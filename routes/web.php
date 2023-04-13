@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DiagnosticoController;
 use App\Http\Controllers\RecepcioneController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/welcome', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
 Route::resource('recepciones', RecepcioneController::class)->middleware('auth');
+
+Route::resource('diagnosticos', DiagnosticoController::class)->middleware('auth');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
