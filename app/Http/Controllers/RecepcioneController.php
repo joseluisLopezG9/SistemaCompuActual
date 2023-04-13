@@ -48,7 +48,7 @@ class RecepcioneController extends Controller
         $recepcione = Recepcione::create($request->all());
 
         return redirect()->route('recepciones.index')
-            ->with('success', 'Recepcione created successfully.');
+            ->with('success', 'La recepción se ha creado exitosamente!.');
     }
 
     /**
@@ -91,7 +91,7 @@ class RecepcioneController extends Controller
         $recepcione->update($request->all());
 
         return redirect()->route('recepciones.index')
-            ->with('success', 'Recepcione updated successfully');
+            ->with('success', 'La recepción se ha actualizado exitosamente!');
     }
 
     /**
@@ -104,6 +104,6 @@ class RecepcioneController extends Controller
         $recepcione = Recepcione::find($id)->delete();
 
         return redirect()->route('recepciones.index')
-            ->with('success', 'Recepcione deleted successfully');
+            ->with('success', 'La recepción se ha eliminado exitosamente!');
     }
 }

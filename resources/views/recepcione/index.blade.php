@@ -1,7 +1,5 @@
 <!doctype html>
 <html lang="es">
-
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>compuActual - recepción</title>
 </head>
 
@@ -53,16 +51,16 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header m-4">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                            <h5 id="card_title">
-                                {{ __('RECEPCIONES') }}
+                            <h5 style="text-align: center;" id="card_title">
+                                {{ __('Recepciones compuActual | Abril 2023') }}
                             </h5>
 
                              <div class="float-right">
-                                <a href="{{ route('recepciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear una nueva recepción') }}
+                                <a href="{{ route('recepciones.create') }}" class="btn btn-warning btn-sm float-right"  data-placement="left">
+                                  {{ __('Crear una nueva recepción ') }}<i class="bi bi-plus"></i>
                                 </a>
                               </div>
                         </div>
@@ -75,7 +73,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered-1 border-secondary">
+                            <table class="table table-bordered-1 border-primary table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
@@ -100,20 +98,20 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $recepcione->marca }}</td>
-											<td>{{ $recepcione->modelo }}</td>
-											<td>{{ $recepcione->numSerie }}</td>
-											<td>{{ $recepcione->caracteristicasFisicas }}</td>
-											<td>{{ $recepcione->caracteristicasInternas }}</td>
-											<td>{{ $recepcione->accesorios }}</td>
-											<td>{{ $recepcione->claveAcceso }}</td>
-											<td>{{ $recepcione->servicio }}</td>
-											<td>{{ $recepcione->name }}</td>
-											<td>{{ $recepcione->telefono }}</td>
+											<td class="text-center">{{ $recepcione->marca }}</td>
+											<td class="text-center">{{ $recepcione->modelo }}</td>
+											<td class="text-center">{{ $recepcione->numSerie }}</td>
+											<td class="text-center">{{ $recepcione->caracteristicasFisicas }}</td>
+											<td class="text-center">{{ $recepcione->caracteristicasInternas }}</td>
+											<td class="text-center">{{ $recepcione->accesorios }}</td>
+											<td class="text-center">{{ $recepcione->claveAcceso }}</td>
+											<td class="text-center">{{ $recepcione->servicio }}</td>
+											<td class="text-center">{{ $recepcione->name }}</td>
+											<td class="text-center">{{ $recepcione->telefono }}</td>
 
                                             <td>
                                                 <form action="{{ route('recepciones.destroy',$recepcione->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary mb-2" href="{{ route('recepciones.show',$recepcione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-secondary mb-2" href="{{ route('recepciones.show',$recepcione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
                                                     <a class="btn btn-sm btn-success  mb-2" href="{{ route('recepciones.edit',$recepcione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
@@ -127,8 +125,14 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-success btn-sm m-2" href="{{ route('home') }}""></i> {{ __('Volver a la página anterior') }}</a>
-                {!! $recepciones->links() !!}
+                <div style="display: flex; justify-content;">
+                    <a class="btn btn-success btn-sm m-2" href="{{ route('home') }}""> <i class="bi bi-arrow-left"></i> {{ __('Volver a la página anterior') }}</a>
+                    {!! $recepciones->links() !!}
+                    
+                </div>
+            <div style="display: flex; justify-content: center;">
+                <button class="btn btn-primary">{{ __(' Continuar con el diágnostico ') }} <i class="bi bi-arrow-right"></i></button>
+                
             </div>
         </div>
     </div>
