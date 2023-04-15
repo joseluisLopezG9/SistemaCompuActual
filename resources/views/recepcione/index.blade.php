@@ -126,13 +126,12 @@
                     </div>
                 </div>
                 <div style="display: flex; justify-content;">
-                    <a class="btn btn-success btn-sm m-2" href="{{ route('home') }}""> <i class="bi bi-arrow-left"></i> {{ __('Volver a la página anterior') }}</a>
+                    <a class="btn btn-success btn-sm m-2" href="{{ route('home') }}"> <i class="bi bi-arrow-left"></i> {{ __('Volver a la página anterior') }}</a>
                     {!! $recepciones->links() !!}
                     
                 </div>
             <div style="display: flex; justify-content: center;">
-                <button class="btn btn-primary">{{ __(' Continuar con el diágnostico ') }} <i class="bi bi-arrow-right"></i></button>
-                
+                <a class="btn btn-primary" href="{{ route('diagnosticos.create') }}">{{ __(' Continuar con el diágnostico ') }} <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
     </div>

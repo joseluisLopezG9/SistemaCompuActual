@@ -75,7 +75,7 @@
     </div>
 </div>   
 <div style="display: flex; justify-content: center;">
-    <button class="btn btn-primary">{{ __(' Terminar el diágnostico ') }} <i class="bi bi-arrow-right"></i></button>
+    <button class="btn btn-primary">{{ __(' Enviar el diágnostico ') }}</button>
 </div>
 
 </div>   

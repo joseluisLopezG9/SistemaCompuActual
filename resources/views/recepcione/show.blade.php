@@ -47,11 +47,11 @@
         </div>
     </nav>
 
-    <section class="content container-fluid m-2">
+    <section class="content container-fluid m-4">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header m-2">
+                    <div class="card-header m-4">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <h5 id="card_title m-2" class="text-success">
                                 {{ __('Datos que fueron guardados en la recepción:') }}
@@ -103,8 +103,8 @@
                         </div>
 
                     </div>
-                    <div class="float-right">
-                        <a class="btn btn-primary" href="{{ route('recepciones.index') }}"> {{ __('Volver a la página anterior') }}</a>
+                    <div style="display: flex; justify-content: center;">
+                        <a class="btn btn-primary" href="{{ route('recepciones.index') }}"><i class="bi bi-arrow-left"></i> {{ __('Volver a la página anterior') }}</a>
                     </div>
                 </div>
             </div>

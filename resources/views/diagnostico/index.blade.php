@@ -1,24 +1,66 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="es">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('template_title')
-    Diagnostico
-@endsection
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>compuActual - diagnóstico</title>
+</head>
 
-@section('content')
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1574cf;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: #0c0c0c;">
+                <img src="https://cdn-icons-png.flaticon.com/512/1802/1802913.png"
+                     alt="" width="50" height="50">compuActual | El equipo más moderno
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-4 mb-lg-0">
+                    <li class="nav-item">
+                        @if (Auth::check())
+                        <a class="nav-link active h5" aria-current="page"><i
+                            class="bi bi-person-circle"></i> {{ Auth::user()->name }}</a>
+                        @else
+                        @endif
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active h5" aria-current="page" href="{{ url('/welcome') }}"><i
+                                class="bi bi-house-door-fill"></i> Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active h5" aria-current="page" href="{{ url('/logout') }}"><i
+                            class="bi bi-box-arrow-right"></i> Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header m-4">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                            <span id="card_title">
-                                {{ __('Diagnostico') }}
-                            </span>
+                            <h5 style="text-align: center;" id="card_title">
+                                {{ __('Diagnósticos compuActual | Abril 2023') }}
+                            </h5>
 
                              <div class="float-right">
-                                <a href="{{ route('diagnosticos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                <a href="{{ route('diagnosticos.create') }}" class="btn btn-warning btn-sm float-right"  data-placement="left">
+                                  {{ __('Crear un nuevo diagnóstico ') }}<i class="bi bi-plus"></i>
                                 </a>
                               </div>
                         </div>
@@ -31,59 +73,63 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-bordered-1 border-primary table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>No.</th>
                                         
-										<th>Fechadiagnostico</th>
+										<th>Fecha diagnóstico</th>
 										<th>Observaciones</th>
 										<th>Marca</th>
 										<th>Modelo</th>
-										<th>Numserie</th>
-										<th>Motherboard</th>
-										<th>Ram</th>
-										<th>Unidadalmacenamiento</th>
-										<th>Cpu</th>
-										<th>Gpu</th>
+										<th>No. serie</th>
+										<th>Tarjeta madre</th>
+										<th>RAM</th>
+										<th>Disco duro</th>
+										<th>Procesador</th>
+										<th>Tarjeta gráfica</th>
+                                        <th>Acciones</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($diagnosticos as $diagnostico)
+                                    @foreach ($diagnosticos  as $diagnostico)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $diagnostico->fechaDiagnostico }}</td>
-											<td>{{ $diagnostico->observaciones }}</td>
-											<td>{{ $diagnostico->marca }}</td>
-											<td>{{ $diagnostico->modelo }}</td>
-											<td>{{ $diagnostico->numSerie }}</td>
-											<td>{{ $diagnostico->motherboard }}</td>
-											<td>{{ $diagnostico->ram }}</td>
-											<td>{{ $diagnostico->unidadAlmacenamiento }}</td>
-											<td>{{ $diagnostico->cpu }}</td>
-											<td>{{ $diagnostico->gpu }}</td>
+											<td class="text-center">{{ $diagnostico->fechaDiagnostico }}</td>
+											<td class="text-center">{{ $diagnostico->observaciones }}</td>
+											<td class="text-center">{{ $diagnostico->marca }}</td>
+											<td class="text-center">{{ $diagnostico->modelo }}</td>
+											<td class="text-center">{{ $diagnostico->numSerie }}</td>
+											<td class="text-center">{{ $diagnostico->motherboard }}</td>
+											<td class="text-center">{{ $diagnostico->ram }}</td>
+											<td class="text-center">{{ $diagnostico->unidadAlmacenamiento }}</td>
+											<td class="text-center">{{ $diagnostico->cpu }}</td>
+											<td class="text-center">{{ $diagnostico->gpu }}</td>
 
                                             <td>
                                                 <form action="{{ route('diagnosticos.destroy',$diagnostico->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('diagnosticos.show',$diagnostico->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('diagnosticos.edit',$diagnostico->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    <a class="btn btn-sm btn-secondary mb-2" href="{{ route('diagnosticos.show',$diagnostico->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-success  mb-2" href="{{ route('diagnosticos.edit',$diagnostico->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm  mb-2"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div style="display: flex; justify-content: center;">
+                                <a class="btn btn-primary" href="{{ route('home') }}"><i class="bi bi-arrow-left"></i>{{ __(' Volver a la página anterior ') }}</a>
+                                {!! $diagnosticos->links() !!}
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
-                {!! $diagnosticos->links() !!}
-            </div>
+               
         </div>
     </div>
-@endsection

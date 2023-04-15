@@ -48,7 +48,7 @@ class DiagnosticoController extends Controller
         $diagnostico = Diagnostico::create($request->all());
 
         return redirect()->route('diagnosticos.index')
-            ->with('success', 'Diagnostico created successfully.');
+            ->with('success', 'El diagnóstico fue creado exitosamente!');
     }
 
     /**
@@ -91,7 +91,7 @@ class DiagnosticoController extends Controller
         $diagnostico->update($request->all());
 
         return redirect()->route('diagnosticos.index')
-            ->with('success', 'Diagnostico updated successfully');
+            ->with('success', 'El diagnóstico se ha actulizado exitosamente!');
     }
 
     /**
@@ -104,6 +104,6 @@ class DiagnosticoController extends Controller
         $diagnostico = Diagnostico::find($id)->delete();
 
         return redirect()->route('diagnosticos.index')
-            ->with('success', 'Diagnostico deleted successfully');
+            ->with('success', 'El diagnóstico se ha eliminado exitosamente!');
     }
 }

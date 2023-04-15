@@ -63,7 +63,7 @@
                 </div>
                 <div class="col">
                     <img src="https://www.diagnosticolondres.com/wp-content/uploads/2022/10/icono-cardiologia-diagnostico-londres-blue-350-150x150.png" width="100" height="150" class="card-img-top" alt="...">
-                    <h5 class="card-title text-center"><a href="{{ route('diagnosticos.create') }}"">Diagnóstico</a></h5>
+                    <h5 class="card-title text-center"><a href="{{ route('diagnosticos.index') }}"">Diagnóstico</a></h5>
                 </div>
                 <div class="col">
                     <img src="https://cdn-icons-png.flaticon.com/512/2038/2038012.png" width="150" height="150" class="card-img-top" alt="...">
