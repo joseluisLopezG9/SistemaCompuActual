@@ -48,10 +48,10 @@
             </div>
         </div>
     </nav>
-    <div class="row g-2 justify-content-center m-0">
+    <div class="row g-2 justify-content-center m-2">
         <div class="col-md-10">
-            <div class="card align-items-center text-primary" style="font-size: 2rem">{{ __('Soporte técnico') }}</div>
-            <div class="card align-items-center m-0">
+            <div class="card align-items-center text-primary border-0" style="font-size: 2rem">{{ __('SOPORTE TÉCNICO') }}</div>
+            <div class="card align-items-center m-2 border-0">
                 <label class="mb-0" style="font-size:14pt">Bienvenid@ aquí se encuentran los puntos que se llevan a cabo para realizar una reparación.</label>
                 <img src="https://cdn.shopify.com/s/files/1/0613/0076/9014/products/SOPORTEMENSUAL_65176124-3126-4bf8-b517-3d31ff398555_1024x1024.png?v=1648210716"
                     alt="" class="card-img-top w-50 img-fluid rounded">
@@ -63,15 +63,15 @@
                 </div>
                 <div class="col">
                     <img src="https://www.diagnosticolondres.com/wp-content/uploads/2022/10/icono-cardiologia-diagnostico-londres-blue-350-150x150.png" width="100" height="150" class="card-img-top" alt="...">
-                    <h5 class="card-title text-center"><a href="{{ route('diagnosticos.index') }}"">Diagnóstico</a></h5>
+                    <h5 class="card-title text-center"><a href="{{ route('diagnosticos.index') }}">Diagnóstico</a></h5>
                 </div>
                 <div class="col">
                     <img src="https://cdn-icons-png.flaticon.com/512/2038/2038012.png" width="150" height="150" class="card-img-top" alt="...">
                     <h5 class="card-title text-center"><a href="#">Comunicación</a></h5>
                 </div>
                 <div class="col">
-                    <img src="https://png.pngtree.com/png-vector/20190214/ourlarge/pngtree-repair-icon-png-image_428240.jpg" width="150" height="150" class="card-img-top" alt="...">
-                    <h5 class="card-title text-center"><a href="#">Reparación</a></h5>
+                    <img src="https://cdn-icons-png.flaticon.com/512/5520/5520971.png" width="150" height="150" class="card-img-top" alt="...">
+                    <h5 class="card-title text-center"><a href="#">Usuarios</a></h5>
                 </div>
               </div>
 

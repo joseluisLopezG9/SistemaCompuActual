@@ -148,7 +148,7 @@
                         </form>
                     </div>
                     <div style="display: flex; justify-content;">
-                      <button class="btn btn-success btn-sm m-2" id="btn-back" href="{{ route('home') }}"> <i class="bi bi-arrow-left"></i> {{ __('Volver a la página anterior') }}</button>
+                      <button class="btn btn-success btn-sm m-2" onclick="history.back()" id="btn-back" href="{{ route('home') }}"> <i class="bi bi-arrow-left"></i> {{ __('Volver a la página anterior') }}</button>
                       
                   </div>
                 </div>

@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'invalid_credentials' => 'Estas credenciales no coinciden con nuestros registros.',
     'The :attribute field is required.' => 'El campo :attribute es requerido.',
 
 

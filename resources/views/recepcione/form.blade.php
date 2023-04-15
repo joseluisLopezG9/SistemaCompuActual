@@ -3,7 +3,7 @@
     <form action="" class="row g-3">
       <div class="col-md-6">
           <div class="" style="width: 38rem;">
-              <div class="card-body mb-2"> 
+            <div class="card-body mb-2"> 
                 <div class="form-group mb-2">
                     <label for="">Marca</label>
                     {{ Form::text('marca', $recepcione->marca, ['class' => 'form-control' . ($errors->has('marca') ? ' is-invalid' : '')]) }}
