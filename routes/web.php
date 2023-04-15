@@ -25,6 +25,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/welcome', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+
+Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
+
 Route::resource('recepciones', RecepcioneController::class)->middleware('auth');
 
 Route::resource('diagnosticos', DiagnosticoController::class)->middleware('auth');

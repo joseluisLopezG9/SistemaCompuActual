@@ -39,11 +39,11 @@
 
     <div class="row g-3 justify-content-center m-5">
         <div class="col-md-8">
-            <div class="card align-items-center">
+            <div class="card align-items-center border-0">
                 <div class="mb-2 text-primary" style="font-size: 3rem">{{ __('Iniciar sesión') }}</div>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU"
+                <img src="https://cdn-icons-png.flaticon.com/512/2037/2037161.png"
                     alt="" class="card-img-top w-50 img-fluid rounded">
-                <div class="card-body">
+                <div class="card-body border-0">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="row mb-3">

@@ -63,18 +63,20 @@
                 </div>
                 <div class="col">
                     <img src="https://www.diagnosticolondres.com/wp-content/uploads/2022/10/icono-cardiologia-diagnostico-londres-blue-350-150x150.png" width="100" height="150" class="card-img-top" alt="...">
-                    <h5 class="card-title text-center"><a href="{{ route('diagnosticos.index') }}">Diagnóstico</a></h5>
+                    <h5 class="card-title text-center"><a href="{{ route('diagnosticos.index') }}"">Diagnóstico</a></h5>
                 </div>
                 <div class="col">
                     <img src="https://cdn-icons-png.flaticon.com/512/2038/2038012.png" width="150" height="150" class="card-img-top" alt="...">
                     <h5 class="card-title text-center"><a href="#">Comunicación</a></h5>
                 </div>
                 <div class="col">
-                    <img src="https://cdn-icons-png.flaticon.com/512/5520/5520971.png" width="150" height="150" class="card-img-top" alt="...">
-                    <h5 class="card-title text-center"><a href="#">Usuarios</a></h5>
+                        @if (Route::has('register'))
+                        <img src="https://cdn-icons-png.flaticon.com/512/5520/5520971.png" width="150" height="150" class="card-img-top" alt="...">
+                        <h5 class="card-title text-center"><a href="{{ url('/register') }}">Usuarios</a></h5>
+                        @endif
+                   
                 </div>
-              </div>
-
+                </div>
             </div>
         </div>
     </div>

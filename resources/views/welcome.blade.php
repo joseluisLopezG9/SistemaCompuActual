@@ -48,8 +48,8 @@
                 <div class="container">
                     <!-- Logo -->
             <a class="" data-scroll-nav="1">
-            <img src="https://cdn-icons-png.flaticon.com/512/1802/1802913.png"
-                     alt="" width="80" height="80">compuActual | El equipo más moderno</a>
+            <img src="https://scontent.fpbc1-1.fna.fbcdn.net/v/t39.30808-6/302179453_494430836022283_5763488348950988190_n.png?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yv4fZy2XaiUAX-N5eYq&_nc_oc=AQkYGiXlWjZoGmy6DKNiZILjv9CddJr7uwG7J3JkDhyKstuBrvLmUUnFUjONwwM1isU&_nc_ht=scontent.fpbc1-1.fna&oh=00_AfDrDhXyQoM3xWRA03mQ8JjsQr4ac-b2Bv7N3bd8r3qrQQ&oe=64400ED2"
+                     alt="" width="80" height="80"> El equipo más moderno</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"><i class="icofont-navigation-menu"></i></span>
                     </button>
@@ -58,7 +58,7 @@
                         @if (Route::has('login'))
                             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                                 @auth
-                                    <a href="{{ url('/home') }}" class="nav-link active" data-scroll-nav="0">Home</a>
+                                    <a href="{{ route('home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                                 @else
                                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Iniciar sesión</a>
             
@@ -68,7 +68,6 @@
                                 @endauth
                             </div>
                         @endif
-            
             </nav>
         </div>
     </header>
@@ -239,8 +238,8 @@
                     <div class="footer-social">
                         <ul>
                             <li><span>Síguenos en:</span></li>
-                            <li><a href><i class="icofont-facebook"></i></a></li>
-                            <li><a href><i class="icofont-twitter"></i></a></li>
+                            <li><a href="https://www.facebook.com/Compuactual/?locale=es_LA"><i class="icofont-facebook"></i></a></li>
+                            <li><a href="https://mobile.twitter.com"><i class="icofont-twitter"></i></a></li>
                     <p class="text-center py-4">Telnet Systems Group ®<br>
                                 Copyright © 2023 Todos los derechos reservados<br>
                     </p>
