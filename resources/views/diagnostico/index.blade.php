@@ -28,9 +28,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-4 mb-lg-0">
                     <li class="nav-item">
-                        @if (Auth::check())
+                        @if (Auth::check() && Auth::user() instanceof App\Models\User)
                         <a class="nav-link active h5" aria-current="page"><i
-                            class="bi bi-person-circle"></i> {{ Auth::user()->name }}</a>
+                            class="bi bi-person-circle"></i> {{ Auth::user()->name }} ({{ Auth::user()->role }}) </a>
                         @else
                         @endif
                     </li>
@@ -50,7 +50,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card">
+                <div class="card border-0">
                     <div class="card-header m-4">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
@@ -58,11 +58,12 @@
                                 {{ __('Diagnósticos compuActual | Abril 2023') }}
                             </h5>
 
-                             <div class="float-right">
-                                <a href="{{ route('diagnosticos.create') }}" class="btn btn-warning btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear un nuevo diagnóstico ') }}<i class="bi bi-plus"></i>
-                                </a>
+                            @can('admin.diagnostico.create')
+                            <a href="{{ route('diagnostico.create') }}" class="btn btn-warning btn-sm float-right"  data-placement="left">
+                            {{ __('Crear un nuevo diagnóstico ') }}<i class="bi bi-plus"></i>
+                            </a>
                               </div>
+                            @endcan   
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -78,17 +79,17 @@
                                     <tr>
                                         <th>No.</th>
                                         
-										<th>Fecha diagnóstico</th>
-										<th>Observaciones</th>
-										<th>Marca</th>
-										<th>Modelo</th>
-										<th>No. serie</th>
-										<th>Tarjeta madre</th>
-										<th>RAM</th>
-										<th>Disco duro</th>
-										<th>Procesador</th>
-										<th>Tarjeta gráfica</th>
-                                        <th>Acciones</th>
+										<th class="text-center">Fecha diagnóstico</th>
+										<th class="text-center">Observaciones</th>
+										<th class="text-center">Marca</th>
+										<th class="text-center">Modelo</th>
+										<th class="text-center">No. serie</th>
+										<th class="text-center">Tarjeta madre</th>
+										<th class="text-center">RAM</th>
+										<th class="text-center">Disco duro</th>
+										<th class="text-center">Procesador</th>
+										<th class="text-center">Tarjeta gráfica</th>
+                                        <th class="text-center">Acciones</th>
 
                                         <th></th>
                                     </tr>
@@ -111,11 +112,18 @@
 
                                             <td>
                                                 <form action="{{ route('diagnosticos.destroy',$diagnostico->id) }}" method="POST">
+                                                    @can('admin.recepcione.show')
                                                     <a class="btn btn-sm btn-outline-primary mb-2" href="{{ route('diagnosticos.show',$diagnostico->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    @endcan
+                                                    @can('admin.recepcione.edit')
                                                     <a class="btn btn-sm btn-outline-secondary  mb-2" href="{{ route('diagnosticos.edit',$diagnostico->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                    @endcan
                                                     @csrf
                                                     @method('DELETE')
+                                                    
+                                                    @can('admin.diagnostico.destroy')
                                                     <button type="submit" class="btn btn-outline-danger btn-sm mb-2"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    @endcan
                                                 </form>
                                             </td>
                                         </tr>

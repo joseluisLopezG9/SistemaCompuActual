@@ -28,9 +28,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-4 mb-lg-0">
                     <li class="nav-item">
-                        @if (Auth::check())
+                        @if (Auth::check() && Auth::user() instanceof App\Models\User)
                         <a class="nav-link active h5" aria-current="page"><i
-                            class="bi bi-person-circle"></i> {{ Auth::user()->name }}</a>
+                            class="bi bi-person-circle"></i> {{ Auth::user()->name }} ({{ Auth::user()->role }}) </a>
                         @else
                         @endif
                     </li>
@@ -50,7 +50,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card">
+                <div class="card border-0">
                     <div class="card-header m-4">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
@@ -59,10 +59,13 @@
                             </h5>
 
                              <div class="float-right">
-                                <a href="{{ route('recepciones.create') }}" class="btn btn-warning btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear una nueva recepción ') }}<i class="bi bi-plus"></i>
-                                </a>
+
+                            @can('admin.recepcione.create')
+                            <a href="{{ route('recepciones.create') }}" class="btn btn-warning btn-sm float-right"  data-placement="left">
+                            {{ __('Crear una nueva recepción ') }}<i class="bi bi-plus"></i>
+                            </a>
                               </div>
+                            @endcan   
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -71,24 +74,24 @@
                         </div>
                     @endif
 
-                    <div class="card-body">
+                    <div class="card-body border-0">
                         <div class="table-responsive">
                             <table class="table table-bordered-1 border-primary table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>No.</th>
                                         
-										<th>Marca</th>
-										<th>Modelo</th>
-										<th>No. Serie</th>
-										<th>Caracteristicas Fisicas</th>
-										<th>Caracteristicas Internas</th>
-										<th>Accesorios</th>
-										<th>Contraseña</th>
-										<th>Servicio</th>
-										<th>Nombre</th>
-										<th>Teléfono</th>
-                                        <th>Acciones</th>
+										<th class="text-center">Marca</th>
+										<th class="text-center">Modelo</th>
+										<th class="text-center">No. Serie</th>
+										<th class="text-center">Caracteristicas Fisicas</th>
+										<th class="text-center">Caracteristicas Internas</th>
+										<th class="text-center">Accesorios</th>
+										<th class="text-center">Contraseña</th>
+										<th class="text-center">Servicio</th>
+										<th class="text-center">Nombre</th>
+										<th class="text-center">Teléfono</th>
+                                        <th class="text-center">Acciones</th>
 
                                         <th></th>
                                     </tr>
@@ -111,11 +114,18 @@
 
                                             <td>
                                                 <form action="{{ route('recepciones.destroy',$recepcione->id) }}" method="POST">
+                                                    @can('admin.recepcione.show')
                                                     <a class="btn btn-sm btn-outline-primary mb-2" href="{{ route('recepciones.show',$recepcione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    @endcan
+                                                    @can('admin.recepcione.edit')
                                                     <a class="btn btn-sm btn-outline-secondary  mb-2" href="{{ route('recepciones.edit',$recepcione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
+                                                    @endcan
+                                                    
+                                                    @can('admin.recepcione.destroy')
                                                     <button type="submit" class="btn btn-outline-danger btn-sm mb-2"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    @endcan   
                                                 </form>
                                             </td>
                                         </tr>

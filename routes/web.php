@@ -29,6 +29,8 @@ Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 's
 
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
+Route::get('/diagnostico.create', [App\Http\Controllers\DiagnosticoController::class, 'create'])->name('diagnostico.create')->middleware('auth');
+
 Route::resource('recepciones', RecepcioneController::class)->middleware('auth');
 
 Route::resource('diagnosticos', DiagnosticoController::class)->middleware('auth');

@@ -28,13 +28,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-4 mb-lg-0">
-                    <li class="nav-item">
-                        @if (Auth::check())
-                        <a class="nav-link active h5" aria-current="page"><i
-                            class="bi bi-person-circle"></i> {{ Auth::user()->name }}</a>
-                        @else
-                        @endif
-                    </li>
+                  <li class="nav-item">
+                    @if (Auth::check() && Auth::user() instanceof App\Models\User)
+                    <a class="nav-link active h5" aria-current="page"><i
+                        class="bi bi-person-circle"></i> {{ Auth::user()->name }} ({{ Auth::user()->role }}) </a>
+                    @else
+                    @endif
+                </li>
                     <li class="nav-item">
                         <a class="nav-link active h5" aria-current="page" href="{{ url('/welcome') }}"><i
                                 class="bi bi-house-door-fill"></i> Inicio</a>
@@ -152,7 +152,6 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('diagnosticos.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
-
                             @include('diagnostico.form')
 
                         </form>
