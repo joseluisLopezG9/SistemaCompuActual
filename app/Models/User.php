@@ -48,4 +48,11 @@ class User extends Authenticatable
     {
         return $this->roles()->pluck('name')->first();
     }
+
+    public function index()
+    {
+    $users = User::all();
+
+    return view('users.index', ['users' => $users]);
+    }
 }

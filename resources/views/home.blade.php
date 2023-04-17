@@ -69,13 +69,10 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/2038/2038012.png" width="150" height="150" class="card-img-top" alt="...">
                     <h5 class="card-title text-center"><a href="#">Comunicación</a></h5>
                 </div>
+                
                 <div class="col">
-                        @if (Route::has('register'))
                         <img src="https://cdn-icons-png.flaticon.com/512/5520/5520971.png" width="150" height="150" class="card-img-top" alt="...">
                         <h5 class="card-title text-center"><a href="{{ url('/register') }}">Usuarios</a></h5>
-                        @endif
-                   
-                </div>
                 </div>
             </div>
         </div>

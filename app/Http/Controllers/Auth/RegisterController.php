@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Auth;
 
 class RegisterController extends Controller
 {
@@ -38,7 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest')->except('showRegistrationForm');
     }
 
     /**
@@ -69,5 +71,25 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if (Auth::check()) {
+            return redirect('/home'); 
+        }
+    
+        return view('auth.register');
+    }
+
+    /*public function showRegistrationForm()
+    {
+    if (auth()->user()->can('view register form')) {
+        return view('auth.register');
+    } else {
+        abort(403);
+    }   
+    }*/
+
+    public function showBlankRegistrationForm()
+    {
+    return view('auth.register-blank'); 
     }
 }

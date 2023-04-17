@@ -112,7 +112,7 @@
 
                                             <td>
                                                 <form action="{{ route('diagnosticos.destroy',$diagnostico->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-outline-primary mb-2" href="{{ route('diagnosticos.show',$diagnostico->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-outline-primary mb-2" href="{{ route('diagnosticos.show',$diagnostico->id) }}"><i class="bi bi-pencil-square"></i> {{ __('Mostrar') }}</a>
                                                     @can('admin.recepcione.edit')
                                                     <a class="btn btn-sm btn-outline-secondary  mb-2" href="{{ route('diagnosticos.edit',$diagnostico->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @endcan
@@ -120,7 +120,7 @@
                                                     @method('DELETE')
                                                     
                                                     @can('admin.diagnostico.destroy')
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm mb-2"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm mb-2"><i class="bi bi-trash3-fill"></i> {{ __('Eliminar') }}</button>
                                                     @endcan
                                                 </form>
                                             </td>

@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('view-register', [RegisterPolicy::class, 'view']);
+        Gate::define('register', function ($user) {
+            return $user->hasRole('Administrador', 'Tecnico', 'Cliente');
+        });
     }
 }
