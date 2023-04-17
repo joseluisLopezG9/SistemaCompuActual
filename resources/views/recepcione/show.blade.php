@@ -87,8 +87,8 @@
                         </div>
                         <div class="form-group mb-2">
                             <strong>Contraseña del equipo:</strong>
-                            {{ $recepcione->claveAcceso }}
-                        </div>
+                            {{ str_repeat('*', strlen($recepcione->claveAcceso)) }}
+                          </div>
                         <div class="form-group mb-2">
                             <strong>Servicio que se va a ofrecer:</strong>
                             {{ $recepcione->servicio }}

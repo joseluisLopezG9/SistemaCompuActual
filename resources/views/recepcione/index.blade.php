@@ -107,16 +107,14 @@
 											<td class="text-center">{{ $recepcione->caracteristicasFisicas }}</td>
 											<td class="text-center">{{ $recepcione->caracteristicasInternas }}</td>
 											<td class="text-center">{{ $recepcione->accesorios }}</td>
-											<td class="text-center">{{ $recepcione->claveAcceso }}</td>
+											<td class="text-center">{{ str_repeat('*', strlen($recepcione->claveAcceso)) }}</td>
 											<td class="text-center">{{ $recepcione->servicio }}</td>
 											<td class="text-center">{{ $recepcione->name }}</td>
 											<td class="text-center">{{ $recepcione->telefono }}</td>
 
                                             <td>
                                                 <form action="{{ route('recepciones.destroy',$recepcione->id) }}" method="POST">
-                                                    @can('admin.recepcione.show')
                                                     <a class="btn btn-sm btn-outline-primary mb-2" href="{{ route('recepciones.show',$recepcione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    @endcan
                                                     @can('admin.recepcione.edit')
                                                     <a class="btn btn-sm btn-outline-secondary  mb-2" href="{{ route('recepciones.edit',$recepcione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf

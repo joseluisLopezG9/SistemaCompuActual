@@ -112,9 +112,7 @@
 
                                             <td>
                                                 <form action="{{ route('diagnosticos.destroy',$diagnostico->id) }}" method="POST">
-                                                    @can('admin.recepcione.show')
                                                     <a class="btn btn-sm btn-outline-primary mb-2" href="{{ route('diagnosticos.show',$diagnostico->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    @endcan
                                                     @can('admin.recepcione.edit')
                                                     <a class="btn btn-sm btn-outline-secondary  mb-2" href="{{ route('diagnosticos.edit',$diagnostico->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @endcan
