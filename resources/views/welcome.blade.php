@@ -240,7 +240,7 @@
                             <li><span>Síguenos en:</span></li>
                             <li><a href="https://www.facebook.com/Compuactual/?locale=es_LA"><i class="icofont-facebook"></i></a></li>
                             <li><a href="https://mobile.twitter.com"><i class="icofont-twitter"></i></a></li>
-                    <p class="text-center py-4">Telnet Systems Group ®<br>
+                    <p class="text-center py-4">Web Development ®<br>
                                 Copyright © 2023 Todos los derechos reservados<br>
                     </p>
                         </ul>

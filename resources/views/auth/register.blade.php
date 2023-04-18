@@ -145,13 +145,17 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-
+            
+                        @can('admin.diagnostico.destroy')
                             <div class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
+                                
                                 <button type="submit" class="btn btn-success mb-2"><i class="bi bi-person-plus-fill"></i>
                                     {{ __('Registrar usuario') }}
+                                    
                                 </button>
                             </div>
-    
+                            @endcan
+                        
                         <div  class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
                             <a class="btn btn-primary" href="{{ route('home') }}"><i class="bi bi-arrow-left"></i>{{ __(' Volver a la página anterior ') }}</a>
                         </div>

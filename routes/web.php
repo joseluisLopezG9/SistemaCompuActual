@@ -36,6 +36,8 @@ Route::get('/register-blank', [App\Http\Controllers\Auth\RegisterController::cla
 
 Route::get('/diagnostico.create', [App\Http\Controllers\DiagnosticoController::class, 'create'])->name('diagnostico.create')->middleware('auth');
 
+Route::get('/chat', [App\Http\Controllers\ChatController::class, 'index'])->name('chat')->middleware('auth');
+
 Route::resource('recepciones', RecepcioneController::class)->middleware('auth');
 
 Route::resource('diagnosticos', DiagnosticoController::class)->middleware('auth');
