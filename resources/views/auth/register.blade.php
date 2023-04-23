@@ -13,7 +13,38 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <title>compuActual - home</title>
+
+<script>
+
+function verificarFortalezaContrasena() {
+  var contrasena = document.getElementById("contrasena").value;
+  var mensaje = document.getElementById("mensaje");
+  var fortaleza = 0;
+  
+  // Verificar la fortaleza de la contraseña
+  if (contrasena.match(/[a-z]+/)) {
+    fortaleza += 1;
+  }
+  if (contrasena.match(/[A-Z]+/)) {
+    fortaleza += 1;
+  }
+  if (contrasena.match(/[0-9]+/)) {
+    fortaleza += 1;
+  }
+  if (contrasena.match(/[$@#&!]+/)) {
+    fortaleza += 1;
+  }
+
+  // Mostrar mensaje de alerta
+  if (fortaleza < 3) {
+    alert("¡HEY! La contraseña debe contener al menos 8 caracteres, incluyendo al menos una letra minúscula, una letra mayúscula, un número y un carácter especial.");
+    }
+}
+
+</script>
+
 </head>
+
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1574cf;">
@@ -31,9 +62,12 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         @if (Auth::check() && Auth::user() instanceof App\Models\User)
-                        <a class="nav-link active h5" aria-current="page"><i
-                            class="bi bi-person-circle"></i> {{ Auth::user()->name }} ({{ Auth::user()->role }}) </a>
-                        @else
+                            <a class="nav-link active h5" aria-current="page">
+                                <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
+                                @if (Auth::user()->role)
+                                    ({{ Auth::user()->role }})
+                                @endif
+                            </a>
                         @endif
                     </li>
                     <li class="nav-item">
@@ -48,6 +82,7 @@
             </div>
         </div>
 </nav>
+
 
 <div class="container m-4">
     <table class="table m-4">
@@ -87,6 +122,7 @@
       </table>
 </div>
 
+ 
 <div class="row g-2 justify-content-center m-4">
     <div class="col-md-10">
             <div class="card border-0 m-4">
@@ -97,11 +133,29 @@
                         @csrf
 
                         <div class="row mb-3">
+                            <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Rol') }}</label>
+                        
+                            <div class="col-md-6">
+                                <select id="role" class="form-select @error('role') is-invalid @enderror" name="role" required>
+                                    <option value="" selected disabled>{{ __('Selecciona un rol...') }}</option>
+                                    <option value="admin">{{ __('Administrador') }}</option>
+                                    <option value="tecnico">{{ __('Técnico') }}</option>
+                                    <option value="cliente">{{ __('Cliente') }}</option>
+                                </select>
+                        
+                                @error('role')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -128,8 +182,8 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" onblur="verificarFortalezaContrasena()" required autocomplete="new-password">
+                                <input type="hidden" id="contrasena" name="contrasena">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -146,7 +200,8 @@
                             </div>
                         </div>
             
-                        @can('admin.diagnostico.destroy')
+                
+
                             <div class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
                                 
                                 <button type="submit" class="btn btn-success mb-2"><i class="bi bi-person-plus-fill"></i>
@@ -154,8 +209,7 @@
                                     
                                 </button>
                             </div>
-                            @endcan
-                        
+                          
                         <div  class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
                             <a class="btn btn-primary" href="{{ route('home') }}"><i class="bi bi-arrow-left"></i>{{ __(' Volver a la página anterior ') }}</a>
                         </div>
@@ -165,3 +219,4 @@
         </div>
     </div>
 </div>
+
