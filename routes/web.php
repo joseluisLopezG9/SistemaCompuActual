@@ -30,7 +30,15 @@ Route::get('/welcome', [App\Http\Controllers\WelcomeController::class, 'index'])
 
 //Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'create']);
 
-Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::get('/register/form', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+
+Route::get('/register', [App\Http\Controllers\WelcomeController::class, 'showUsers'])->name('register');
+
+Route::get('/register/{user}/edit', [App\Http\Controllers\WelcomeController::class, 'editUser'])->name('users.edit');
+
+Route::put('/register/users/{user}', [App\Http\Controllers\WelcomeController::class, 'updateUser'])->name('users.update');
+
+Route::delete('/register/users/{user}', [App\Http\Controllers\WelcomeController::class, 'destroyUser'])->name('users.destroy');
 
 Route::get('/register-blank', [App\Http\Controllers\Auth\RegisterController::class, 'showBlankRegistrationForm'])->name('register-blank');
 
@@ -43,3 +51,5 @@ Route::resource('recepciones', RecepcioneController::class)->middleware('auth');
 Route::resource('diagnosticos', DiagnosticoController::class)->middleware('auth');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+

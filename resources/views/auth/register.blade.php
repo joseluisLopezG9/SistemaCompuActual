@@ -16,7 +16,7 @@
 
 <script>
 
-function verificarFortalezaContrasena() {
+/*function verificarFortalezaContrasena() {
   var contrasena = document.getElementById("contrasena").value;
   var mensaje = document.getElementById("mensaje");
   var fortaleza = 0;
@@ -37,9 +37,9 @@ function verificarFortalezaContrasena() {
 
   // Mostrar mensaje de alerta
   if (fortaleza < 3) {
-    alert("¡HEY! La contraseña debe contener al menos 8 caracteres, incluyendo al menos una letra minúscula, una letra mayúscula, un número y un carácter especial.");
+    alert("¡Recuerda que La contraseña debe contener al menos 8 caracteres, incluyendo al menos una letra minúscula, una letra mayúscula, un número y un carácter especial!S");
     }
-}
+}*/
 
 </script>
 
@@ -92,32 +92,32 @@ function verificarFortalezaContrasena() {
             <th scope="col">ID</th>
             <th scope="col">Nombre</th>
             <th scope="col">Rol asignado</th>
+            @can('admin.recepcione.destroy')  
             <th scope="col">Actualizar usuario</th>
+            @endcan
+            @can('admin.recepcione.destroy')  
             <th scope="col">Eliminar usuario</th>
+            @endcan
           </tr>
         </thead>
         <tbody>
+            @foreach ($users as $user)
           <tr>
-            <th scope="row">1</th>
-            <td>Miguel Ocaña Ascencio</td>
-            <td>Administrador</td>
-            <td><button class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></button></td>
-            <td><button class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></button></i></td>
+                <td>{{ $user->id }}</td> 
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->role }}</td>
+            @can('admin.recepcione.destroy')
+            <td><a class="btn btn-outline-success" href="{{ route('users.edit', $user->id) }}"><i class="bi bi-pencil-square"></i></button></td>
+            @endcan
+            @can('admin.recepcione.destroy')
+            <form action="{{ route('users.destroy', $user->id) }}" method="POST"></form>
+             @csrf
+             @method('DELETE')
+            <td><button type="submit" class="btn btn-outline-danger" onclick="return confirm('Estás seguro que deseas eliminar este usuario?')"><i class="bi bi-trash3-fill"></button></i></td>
+            </form>
+            @endcan
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Sujaile Díaz Olvera</td>
-            <td>Técnico</td>
-            <td><button class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></button></td>
-            <td><button class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></button></i></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Harumi Espinoza Montes</td>
-            <td>Cliente</td>
-            <td><button class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></button></td>
-            <td><button class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></button></i></td>
-          </tr>
+          @endforeach
         </tbody>
       </table>
 </div>
@@ -126,6 +126,7 @@ function verificarFortalezaContrasena() {
 <div class="row g-2 justify-content-center m-4">
     <div class="col-md-10">
             <div class="card border-0 m-4">
+            @can('admin.recepcione.destroy')  
                 <div class="card align-items-center text-primary border-0" style="font-size: 2rem">{{ __('Registrar un nuevo usuario') }}</div>
 
                 <div class="card-body">
@@ -139,7 +140,7 @@ function verificarFortalezaContrasena() {
                                 <select id="role" class="form-select @error('role') is-invalid @enderror" name="role" required>
                                     <option value="" selected disabled>{{ __('Selecciona un rol...') }}</option>
                                     <option value="admin">{{ __('Administrador') }}</option>
-                                    <option value="tecnico">{{ __('Técnico') }}</option>
+                                    <option value="tecnico">{{ __('Tecnico') }}</option>
                                     <option value="cliente">{{ __('Cliente') }}</option>
                                 </select>
                         
@@ -200,23 +201,21 @@ function verificarFortalezaContrasena() {
                             </div>
                         </div>
             
-                
-
                             <div class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
-                                
+                            @can('admin.recepcione.destroy')  
                                 <button type="submit" class="btn btn-success mb-2"><i class="bi bi-person-plus-fill"></i>
                                     {{ __('Registrar usuario') }}
-                                    
+                            @endcan
                                 </button>
                             </div>
-                          
-                        <div  class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
-                            <a class="btn btn-primary" href="{{ route('home') }}"><i class="bi bi-arrow-left"></i>{{ __(' Volver a la página anterior ') }}</a>
-                        </div>
                     </form>
                 </div>
             </div>
+            @endcan
         </div>
+        <div  class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
+            <a class="btn btn-primary" href="{{ route('home') }}"><i class="bi bi-arrow-left"></i>{{ __(' Volver a la página anterior ') }}</a>
+    </div>
     </div>
 </div>
 

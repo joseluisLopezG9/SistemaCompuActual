@@ -48,8 +48,8 @@
                 <div class="container">
                     <!-- Logo -->
             <a class="" data-scroll-nav="1">
-            <img src="https://scontent.fpbc1-1.fna.fbcdn.net/v/t39.30808-6/302179453_494430836022283_5763488348950988190_n.png?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yv4fZy2XaiUAX-N5eYq&_nc_oc=AQkYGiXlWjZoGmy6DKNiZILjv9CddJr7uwG7J3JkDhyKstuBrvLmUUnFUjONwwM1isU&_nc_ht=scontent.fpbc1-1.fna&oh=00_AfDrDhXyQoM3xWRA03mQ8JjsQr4ac-b2Bv7N3bd8r3qrQQ&oe=64400ED2"
-                     alt="" width="80" height="80"> El equipo más moderno</a>
+            <img src="https://cdn-icons-png.flaticon.com/512/1802/1802913.png"
+                     alt="" width="80" height="80"> CompuActual | El equipo más moderno</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"><i class="icofont-navigation-menu"></i></span>
                     </button>
@@ -63,7 +63,7 @@
                                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Iniciar sesión</a>
             
                                     @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Usuarios registrados</a>
+                                        
                                     @endif
                                 @endauth
                             </div>
@@ -240,7 +240,7 @@
                             <li><span>Síguenos en:</span></li>
                             <li><a href="https://www.facebook.com/Compuactual/?locale=es_LA"><i class="icofont-facebook"></i></a></li>
                             <li><a href="https://mobile.twitter.com"><i class="icofont-twitter"></i></a></li>
-                    <p class="text-center py-4">Web Development ®<br>
+                    <p class="text-center py-4">NovaSystems ®<br>
                                 Copyright © 2023 Todos los derechos reservados<br>
                     </p>
                         </ul>

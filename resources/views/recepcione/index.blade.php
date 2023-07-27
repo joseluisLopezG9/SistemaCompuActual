@@ -31,7 +31,7 @@
                         @if (Auth::check() && Auth::user() instanceof App\Models\User)
                         <a class="nav-link active h5" aria-current="page"><i
                             class="bi bi-person-circle"></i> {{ Auth::user()->name }} ({{ Auth::user()->role }}) </a>
-                        @else
+                            @else
                         @endif
                     </li>
                     <li class="nav-item">
@@ -55,12 +55,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <h5 style="text-align: center;" id="card_title">
-                                {{ __('Recepciones compuActual | Abril 2023') }}
+                                {{ __('Recepciones compuActual | Agosto 2023') }}
                             </h5>
-
                              <div class="float-right">
 
-                            @can('admin.recepcione.create')
+                            @can('admin.recepcione.create')     
                             <a href="{{ route('recepciones.create') }}" class="btn btn-warning btn-sm float-right"  data-placement="left">
                             {{ __('Crear una nueva recepción ') }}<i class="bi bi-plus"></i>
                             </a>
@@ -73,6 +72,7 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+                    
 
                     <div class="card-body border-0">
                         <div class="table-responsive">
@@ -139,7 +139,9 @@
                     
                 </div>
             <div style="display: flex; justify-content: center;">
+            @can('admin.recepcione.show') 
                 <a class="btn btn-primary" href="{{ route('diagnosticos.create') }}">{{ __(' Continuar con el diágnostico ') }} <i class="bi bi-arrow-right"></i></a>
             </div>
+            @endcan
         </div>
     </div>

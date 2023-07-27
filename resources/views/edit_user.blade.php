@@ -1,5 +1,7 @@
 <!doctype html>
 <html lang="es">
+
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,8 +11,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>compuActual - recepción</title>
+
+    <title>compuActual - home</title>
 </head>
 
 <body>
@@ -26,7 +28,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-4 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         @if (Auth::check() && Auth::user() instanceof App\Models\User)
                         <a class="nav-link active h5" aria-current="page"><i
@@ -46,29 +48,34 @@
             </div>
         </div>
     </nav>
-
-    <section class="content container-fluid">
-        <div class="">
-            <div class="col-md-12">
-
-                @includeif('partials.errors')
-
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">Actualizar recepción</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('recepciones.update', $recepcione->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
-
-                            @include('recepcione.form')
-                        </form>
-                    </div>
-                </div>
-                <div style="display: flex; justify-content;">
-                    <a class="btn btn-success btn-sm m-2" href="{{ route('home') }}""> <i class="bi bi-arrow-left"></i> {{ __('Volver a la página anterior') }}</a>
-                </div>
+<br>
+<section class="content container-fluid">
+    <div class="container">
+        <div class="card-card-default">
+            <div class="card-header">
+        <form action="{{ route('users.update', $user->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
             </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Rol</label>
+                <select class="form-control" id="role" name="role">
+                    @foreach ($roles as $id => $name)
+                        <option value="{{ $name }}" @if($user->hasRole($name)) selected @endif>{{ $name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Actualizar usuario</button>
+        </form>
         </div>
-    </section>
+        </div>
+    </div>
+    <br>
+    <div style="display: flex; justify-content: center;">
+    <a class="btn btn-success" href="{{ url('/register') }}"><i class="bi bi-arrow-left"></i>{{ __(' Volver a la página anterior ') }}</a>
+    </div>
+    
+</section>
