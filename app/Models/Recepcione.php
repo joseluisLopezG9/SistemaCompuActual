@@ -38,6 +38,7 @@ class Recepcione extends Model
 		'servicio' => 'required',
 		'name' => 'required',
 		'telefono' => 'required',
+		'estado_notificacion',
     ];
 
     protected $perPage = 20;

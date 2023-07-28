@@ -106,4 +106,6 @@ class RecepcioneController extends Controller
         return redirect()->route('recepciones.index')
             ->with('success', 'La recepción se ha eliminado exitosamente!');
     }
+
+    
 }

@@ -12,7 +12,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-    <title>compuActual - home</title>
+    <title>compuActual - register</title>
 
 <script>
 
@@ -42,6 +42,22 @@
 }*/
 
 </script>
+
+<style>
+
+.password-notice {
+  background-color: #f0fff0; /* Color de fondo verde claro */
+  padding: 8px; /* Espaciado interno */
+  border: 2px solid #006400; /* Borde verde oscuro */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-top: 8px; /* Espacio superior */
+  font-size: 16px; /* Tamaño del texto */
+  color: #333; /* Color del texto */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+</style>
+
 
 </head>
 
@@ -84,9 +100,9 @@
 </nav>
 
 
-<div class="container m-4">
+<div class="row g-2 justify-content-center m-4">
     <table class="table m-4">
-        <div class="card align-items-center text-primary border-0 m-2" style="font-size: 2rem">{{ __('Usuarios registrados') }}</div>
+        <div class="card align-items-center text-primary border-0" style="font-size: 2rem">{{ __('Usuarios registrados') }}</div>
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -180,17 +196,23 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" onblur="verificarFortalezaContrasena()" required autocomplete="new-password">
-                                <input type="hidden" id="contrasena" name="contrasena">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        
+                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
+                        <div class="col-md-6">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" onblur="verificarFortalezaContrasena()" required autocomplete="new-password">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <!-- Aviso de seguridad debajo del campo de contraseña -->
+                            <br>
+                            <div class="password-notice text-center">
+                            ¡Recuerda que la contraseña debe contener al menos 8 caracteres, incluyendo al menos <strong>una letra minúscula, una letra mayúscula, un número y un carácter especial!</strong>
                             </div>
+                            <br>
+                        
                         </div>
 
                         <div class="row mb-3">

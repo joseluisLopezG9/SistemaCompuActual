@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('servicio');
             $table->string('name');
             $table->string('telefono');
+            $table->string('estado_notificacion')->nullable();
             $table->timestamps();
         });
     }

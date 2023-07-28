@@ -81,7 +81,7 @@
             <br>
             <div class="col">
                     <img src="https://cdn-icons-png.flaticon.com/512/4658/4658755.png" width="125" height="125" class="card-img-top" alt="...">
-                    <h5 class="card-title text-center"><a href="{{ url('/register') }}"">Notificaciones</a></h5>
+                    <h5 class="card-title text-center"><a href="{{ route('notifications') }}"">Notificaciones</a></h5>
             </div>
         </div>
     </div>
