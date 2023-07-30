@@ -33,6 +33,7 @@ class RecepcioneController extends Controller
     {
         $recepcione = new Recepcione();
         return view('recepcione.create', compact('recepcione'));
+
     }
 
     /**
@@ -46,6 +47,14 @@ class RecepcioneController extends Controller
         request()->validate(Recepcione::$rules);
 
         $recepcione = Recepcione::create($request->all());
+
+        $recepcione->estado_notificacion = 'PENDIENTE';
+
+        $recepcione->save();
+
+        $recepcione = Recepcione::find($recepcione->$id);
+
+        $recepcione->notify(new FcmNotification());
 
         return redirect()->route('recepciones.index')
             ->with('success', 'La recepción se ha creado exitosamente!.');
@@ -106,6 +115,7 @@ class RecepcioneController extends Controller
         return redirect()->route('recepciones.index')
             ->with('success', 'La recepción se ha eliminado exitosamente!');
     }
+
 
     
 }

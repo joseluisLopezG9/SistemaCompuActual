@@ -15,31 +15,20 @@
     <title>compuActual - notificaciones</title>
 
 <script>
+        // Función para ocultar el mensaje de éxito
+        function hideSuccessMessage() {
+            setTimeout(function() {
+                var successMessage = document.querySelector('.alert-success');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+            }, 2000); //  valor (en milisegundos) para ajustar el tiempo de duración
+        }
 
-/*function verificarFortalezaContrasena() {
-  var contrasena = document.getElementById("contrasena").value;
-  var mensaje = document.getElementById("mensaje");
-  var fortaleza = 0;
-  
-  // Verificar la fortaleza de la contraseña
-  if (contrasena.match(/[a-z]+/)) {
-    fortaleza += 1;
-  }
-  if (contrasena.match(/[A-Z]+/)) {
-    fortaleza += 1;
-  }
-  if (contrasena.match(/[0-9]+/)) {
-    fortaleza += 1;
-  }
-  if (contrasena.match(/[$@#&!]+/)) {
-    fortaleza += 1;
-  }
-
-  // Mostrar mensaje de alerta
-  if (fortaleza < 3) {
-    alert("¡Recuerda que La contraseña debe contener al menos 8 caracteres, incluyendo al menos una letra minúscula, una letra mayúscula, un número y un carácter especial!S");
-    }
-}*/
+        // Llama a la función para ocultar el mensaje de éxito cuando se cargue la página
+        document.addEventListener('DOMContentLoaded', function() {
+            hideSuccessMessage();
+        });
 
 </script>
 
@@ -82,9 +71,17 @@
             </div>
         </div>
 </nav>
+<br>
+@if(session('success'))
+<div class="">
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+</div>
+@endif
 
 
-<div class="container m-4">
+<div class="row g-2 justify-content-center m-4">
     <table class="table m-4">
         <div class="card align-items-center text-primary border-0 m-2" style="font-size: 2rem">{{ __('Notificaciones recibidas') }}</div>
         <thead>
@@ -110,23 +107,37 @@
                 <td class="text-center">{{ $recepcione->name }}</td>
                 <td class="text-center">{{ $recepcione->numSerie }}</td>
                 <td class="text-center">{{ $recepcione->modelo }}</td>
-                <td class="text-center"></td>
+                <td class="text-center">{{ $recepcione->estado_notificacion }}</td>
                 <td class="text-center">{{ $recepcione->created_at->format('d-m-Y') }}</td>
+                <br>
                 @can('admin.recepcione.create')
-                <td class="text-center align-middle"><a class="btn btn-outline-success"><i class="bi bi-phone display-6"></i></a></td>
+                <td class="text-center align-middle">
+                    <form action="{{ route('notification', ['id' => $recepcione->id]) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-success"><i class="bi bi-phone display-6"></i></button>
+                    </form>
+                </td>
                 @endcan
                 @can('admin.recepcione.create')
-                <td class="text-center align-middle"><a class="btn btn-outline-primary"><i class="bi bi-watch display-6"></i></a></td>
+                <td class="text-center align-middle">
+                <form action="{{ route('notificationSmart', ['id' => $recepcione->id]) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-primary"><i class="bi bi-watch display-6"></i></button>
+                    </form>
+                </td>
                 @endcan
             </tr>
             @endforeach
         </tbody>
     </table>
-    <br>
-    <div  class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
+ 
+</div>
+
+    <div  class="justify-content-center m-4">
             <a class="btn btn-primary" href="{{ route('home') }}"><i class="bi bi-arrow-left"></i>{{ __(' Volver a la página anterior ') }}</a>
     </div>
-</div>
+
+
    
 
  

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recepcione;
+use App\Notifications\FcmNotification;
+use Illuminate\Support\Facades\Notification;
 
 class NotificationController extends Controller
 {
@@ -17,10 +19,10 @@ class NotificationController extends Controller
 
     }
 
-    public function updateStateNotification(Request $request, $id){
+    public function stateNotification(Request $request, $id){
 
         $request->validate([
-            'estado' => 'required|in:aceptada,rechazada'
+            'estado' => 'required|in:ACEPTADA,RECHAZADA'
         ]);
 
         $estadoSeleccionado = $request->input('estado');
@@ -43,5 +45,26 @@ class NotificationController extends Controller
 
 
     }*/
+
+    public function sendNotification($id)
+    {
+        $recepcione = Recepcione::findOrFail($id);
+
+        Notification::send($recepcione, new FcmNotification());
+
+        return back()->with('success', 'La notificación al dispositivo móvil se ha sido enviada satisfactoriamente!');
+
+        /*->with('success', 'La notificación ha sido enviada satisfactoriamente!', compact('recepcione'));*/
+    }
+
+    public function sendNotificationSmartwatch($id)
+    {
+        $recepcione = Recepcione::findOrFail($id);
+
+        Notification::send($recepcione, new FcmNotification());
+
+        return back()->with('success', 'La notificación al dispositivo wearable se ha enviado satisfactoriamente!');
+
+    }
 
 }

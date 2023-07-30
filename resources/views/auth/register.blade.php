@@ -144,7 +144,7 @@
             <div class="card border-0 m-4">
             @can('admin.recepcione.destroy')  
                 <div class="card align-items-center text-primary border-0" style="font-size: 2rem">{{ __('Registrar un nuevo usuario') }}</div>
-
+                <br>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -231,13 +231,13 @@
                                 </button>
                             </div>
                     </form>
+                    <div  class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
+                    <a class="btn btn-primary" href="{{ route('home') }}"><i class="bi bi-arrow-left"></i>{{ __(' Volver a la página anterior ') }}</a>
+                    </div>
                 </div>
             </div>
             @endcan
         </div>
-        <div  class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
-            <a class="btn btn-primary" href="{{ route('home') }}"><i class="bi bi-arrow-left"></i>{{ __(' Volver a la página anterior ') }}</a>
-    </div>
     </div>
 </div>
 

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('recepciones', function (Blueprint $table) {
+        Schema::create('recepciones', function (Blueprint $table) {{}
 
             $table->engine="InnoDB";
             $table->bigIncrements('id');
@@ -27,7 +27,8 @@ return new class extends Migration
             $table->string('servicio');
             $table->string('name');
             $table->string('telefono');
-            $table->string('estado_notificacion')->nullable();
+            $table->string('estado_notificacion')->default('PENDIENTE DE ENVIAR');
+            $table->string('fcm_token')->nullable();
             $table->timestamps();
         });
     }

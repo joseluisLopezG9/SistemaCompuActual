@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
 
 /**
  * Class Recepcione
@@ -27,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
 class Recepcione extends Model
 {
     
+	use Notifiable;
+
     static $rules = [
 		'marca' => 'required',
 		'modelo' => 'required',
@@ -39,6 +43,7 @@ class Recepcione extends Model
 		'name' => 'required',
 		'telefono' => 'required',
 		'estado_notificacion',
+		'fcm_token',
     ];
 
     protected $perPage = 20;
@@ -51,5 +56,9 @@ class Recepcione extends Model
     protected $fillable = ['marca','modelo','numSerie','caracteristicasFisicas','caracteristicasInternas','accesorios','claveAcceso','servicio','name','telefono'];
 
 
+	public function routeNotificationForFcm()
+	{
+		return $this->fcm_token;
+	}
 
 }

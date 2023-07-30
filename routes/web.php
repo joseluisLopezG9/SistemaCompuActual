@@ -49,6 +49,10 @@ Route::get('/chat', [App\Http\Controllers\ChatController::class, 'index'])->name
 
 Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications')->middleware('auth');
 
+Route::post('/notification/{id}', [App\Http\Controllers\NotificationController::class, 'sendNotification'])->name('notification')->middleware('auth');
+
+Route::post('/notificationSmart/{id}', [App\Http\Controllers\NotificationController::class, 'sendNotificationSmartwatch'])->name('notificationSmart')->middleware('auth');
+
 Route::resource('recepciones', RecepcioneController::class)->middleware('auth');
 
 Route::resource('diagnosticos', DiagnosticoController::class)->middleware('auth');

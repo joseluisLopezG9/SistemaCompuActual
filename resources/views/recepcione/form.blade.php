@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Teléfono del cliente</label>
-                    {{ Form::number('telefono', $recepcione->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : '')]) }}
+                    {{ Form::number('telefono', $recepcione->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'maxlength' => 10]) }}
                     {!! $errors->first('telefono', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             
