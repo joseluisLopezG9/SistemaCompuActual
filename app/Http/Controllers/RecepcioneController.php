@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Recepcione;
 use Illuminate\Http\Request;
+use App\Notifications\FcmNotification;
+use Illuminate\Support\Facades\Notification;
 
 /**
  * Class RecepcioneController
@@ -51,10 +53,6 @@ class RecepcioneController extends Controller
         $recepcione->estado_notificacion = 'PENDIENTE';
 
         $recepcione->save();
-
-        $recepcione = Recepcione::find($recepcione->$id);
-
-        $recepcione->notify(new FcmNotification());
 
         return redirect()->route('recepciones.index')
             ->with('success', 'La recepción se ha creado exitosamente!.');

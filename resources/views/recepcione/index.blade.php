@@ -47,7 +47,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid border-0">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card border-0">

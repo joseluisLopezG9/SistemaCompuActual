@@ -11,29 +11,54 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
+    <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <title>compuActual - notificaciones</title>
 
 <script>
-        // Función para ocultar el mensaje de éxito
-        function hideSuccessMessage() {
-            setTimeout(function() {
-                var successMessage = document.querySelector('.alert-success');
-                if (successMessage) {
-                    successMessage.style.display = 'none';
-                }
-            }, 2000); //  valor (en milisegundos) para ajustar el tiempo de duración
-        }
 
-        // Llama a la función para ocultar el mensaje de éxito cuando se cargue la página
-        document.addEventListener('DOMContentLoaded', function() {
-            hideSuccessMessage();
+    function sendNotificationAndChangeStatus(id, deviceType) {
+        fetch("{{ url('notification') }}" + "/" + id, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ device_type: deviceType })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Notificación enviada',
+                    text: 'La notificación se ha enviado satisfactoriamente al dispositivo ' + deviceType + '.',  
+                }).then(() => {
+                    // Actualizar el estado en la tabla HTML
+                    const estadoCell = document.getElementById('estado_' + id);
+                    estadoCell.textContent = 'ENVIADA';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Notificación no enviada',
+                    text: 'La notificación ya ha sido enviada al cliente, por favor espere a que responda.',
+                });
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al enviar la notificación',
+                text: 'Ha ocurrido un error al enviar la notificación.',
+            });
         });
-
+    }
+  
 </script>
 
 </head>
-
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1574cf;">
@@ -106,23 +131,23 @@
                 <td class="text-center">{{ $recepcione->id }}</td> 
                 <td class="text-center">{{ $recepcione->name }}</td>
                 <td class="text-center">{{ $recepcione->numSerie }}</td>
-                <td class="text-center">{{ $recepcione->modelo }}</td>
-                <td class="text-center">{{ $recepcione->estado_notificacion }}</td>
+                <td class="text-center">{{ $recepcione->modelo }}
+                <td class="text-center" id="estado_{{ $recepcione->id }}">{{ $recepcione->estado_notificacion }}</td>   
                 <td class="text-center">{{ $recepcione->created_at->format('d-m-Y') }}</td>
                 <br>
                 @can('admin.recepcione.create')
                 <td class="text-center align-middle">
-                    <form action="{{ route('notification', ['id' => $recepcione->id]) }}" method="POST">
+                    <form onsubmit="event.preventDefault(); sendNotificationAndChangeStatus({{ $recepcione->id }}, 'móvil')" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-outline-success"><i class="bi bi-phone display-6"></i></button>
+                        <button type="submit" class="btn btn-outline-success"><i class="bi bi-phone-vibrate display-6"></i></button>
                     </form>
                 </td>
                 @endcan
                 @can('admin.recepcione.create')
                 <td class="text-center align-middle">
-                <form action="{{ route('notificationSmart', ['id' => $recepcione->id]) }}" method="POST">
+                    <form onsubmit="event.preventDefault(); sendNotificationAndChangeStatus({{ $recepcione->id }}, 'wearable')" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-outline-primary"><i class="bi bi-watch display-6"></i></button>
+                        <button type="submit" class="btn btn-outline-primary"><i class="bi bi-smartwatch display-6"></i></button>
                     </form>
                 </td>
                 @endcan

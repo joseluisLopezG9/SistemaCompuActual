@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
     <title>compuActual - home</title>
 </head>
@@ -50,12 +51,14 @@
     </nav>
     <div class="row g-2 justify-content-center m-2">
         <div class="col-md-10">
-            <div class="card align-items-center text-primary border-0" style="font-size: 2rem">{{ __('SOPORTE TÉCNICO') }}</div>
+            <div class="card align-items-center text-primary border-0" style="font-size: 2.5rem; font-family: 'Montserrat', sans-serif; font-weight: bold; background-color: #f8f9fa; padding: 1rem; border: none; box-shadow: none;">
+            {{ __('SOPORTE TÉCNICO') }}
+            </div>
             <div class="card align-items-center m-2 border-0">
-                <label class="mb-0" style="font-size:14pt">Bienvenid@ aquí se encuentran los puntos que se llevan a cabo para realizar una reparación.</label>
+            <label class="mb-0" style="font-size: 16pt; font-family: 'Montserrat', sans-serif;">Bienvenid@ aquí se encuentran los puntos que se llevan a cabo para realizar una reparación.</label>
                 <img src="https://cdn.shopify.com/s/files/1/0613/0076/9014/products/SOPORTEMENSUAL_65176124-3126-4bf8-b517-3d31ff398555_1024x1024.png?v=1648210716"
                     alt="" class="card-img-top w-50 img-fluid rounded">
-            
+        
             <div class="row row-cols-2 row-cols-md-4 g-4">
                 <div class="col">
                     <img src="https://cdn-icons-png.flaticon.com/512/2262/2262036.png" width="150" height="150" class="card-img-top" alt="...">

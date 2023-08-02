@@ -1,5 +1,5 @@
-<div class="collapse show border" id="company1">
-    <div class="display-4 text-success">Recepción</div>
+<div class="collapse show" id="company1">
+    <div class="display-4 text-success align text-center">Recepción</div>
     <form action="" class="row g-3">
       <div class="col-md-6">
           <div class="" style="width: 38rem;">

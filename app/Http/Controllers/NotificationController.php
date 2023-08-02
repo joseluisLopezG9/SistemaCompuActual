@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Recepcione;
 use App\Notifications\FcmNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\DB;
+
 
 class NotificationController extends Controller
 {
@@ -46,25 +48,66 @@ class NotificationController extends Controller
 
     }*/
 
-    public function sendNotification($id)
+    public function sendNotification(Request $request, $id)
     {
         $recepcione = Recepcione::findOrFail($id);
 
-        Notification::send($recepcione, new FcmNotification());
+        $deviceType = $request->input('device_type');
 
-        return back()->with('success', 'La notificación al dispositivo móvil se ha sido enviada satisfactoriamente!');
+        if ($recepcione->estado_notificacion !== 'ENVIADA') {
 
-        /*->with('success', 'La notificación ha sido enviada satisfactoriamente!', compact('recepcione'));*/
+            Notification::send($recepcione, new FcmNotification());
+
+            $recepcione->estado_notificacion = 'ENVIADA';
+
+            $recepcione->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'La notificación al dispositivo $deviceType se ha enviado satisfactoriamente' , ucfirst($deviceType),
+            ], 200);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'La notificación ya ha sido enviada al cliente, espere a que responda'
+        ], 200);
+
     }
+    
 
-    public function sendNotificationSmartwatch($id)
+    /*public function sendNotificationSmartwatch($id)
     {
         $recepcione = Recepcione::findOrFail($id);
 
-        Notification::send($recepcione, new FcmNotification());
+         if ($recepcione->estado_notificacion === 'PENDIENTE') {
+            
+            Notification::send($recepcione, new FcmNotification());
+    
+            $recepcione->estado_notificacion = 'ENVIADA';
 
-        return back()->with('success', 'La notificación al dispositivo wearable se ha enviado satisfactoriamente!');
+            $recepcione->save();
+    
+            return response()->json(['message' => 'La notificación al dispositivo wearable se ha enviado satisfactoriamente'], 200);
+        }
+    
+        return response()->json(['message' => 'La notificación ya ha sido enviada al cliente, espere a que responda'], 200);
 
-    }
+    }*/
+
+    /*public function updateNotification($id)
+    {
+        $recepcione = Recepcione::findOrFail($id);
+
+        if ($recepcione->estado_notificacion === 'PENDIENTE'){
+            
+            DB::table('recepciones')
+            ->where('id', $id)
+            ->update(['estado_notificacion' => 'ENVIADA']);
+
+        }
+
+        return redirect()->route('notificacion')->with('success', 'La notificación ha sido enviada satisfactoriamente!');
+    }*/
 
 }

@@ -12,13 +12,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
     <title>compuActual - home</title>
 </head>
 
 <script>
+
   function enviarMensaje() {
-    alert("El mensaje ha sido enviado con éxito.");
+
+  
+    Swal.fire({
+    icon: 'success',
+                    title: 'Mensaje enviado',
+                    text: 'El mensaje fue enviado con éxito',
+  });
+
+  var inputElement = document.getElementById("mensajeInput");
+  inputElement.value = "";
+
   }
 </script>
 
@@ -152,7 +165,7 @@
 
 
 
-<div class="chat-container">
+<div class="chat-container collapse show border">
     <div class="chat-header">
       <div class="avatar"></div>
       <div class="chat-info">
@@ -197,17 +210,26 @@
           <span class="message-time">11:55 am</span>
         </div>
       </div>
+    </div>
   
   
-      <div class="chat-footer">
-        <div class="message outgoing">
-          <div class="message-content">
-            <input type="text" placeholder="Escriba algo..." class="mb-2 form-control py-2 px-3 rounded-pill border-0 shadow-sm">
-            <button class="btn btn-primary" onclick="enviarMensaje()"><i class="fas fa-paper-plane"></i>Enviar</button>
-          </div>
+    <div class="chat-footer">
+    <div class="message outgoing">
+        <div class="message-content">
+            <div class="row">
+                <!-- Columna para el input -->
+                <div class="col">
+                    <input type="text" placeholder="Escriba aquí su mensaje..." class="mb-2 form-control py-2 px-3 rounded-pill border-0 shadow-sm" id="mensajeInput">
+                </div>
+                <!-- Columna para el botón de enviar -->
+                <div class="col-auto">
+                    <button class="btn btn-success" onclick="enviarMensaje()"><i class="bi bi-envelope"> Enviar</button></i> 
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
 </div>
+
 <br>
 <div style="display: flex; justify-content: center;">
     <a class="btn btn-primary" href="{{ route('home') }}"><i class="bi bi-arrow-left"></i>{{ __(' Volver a la página anterior ') }}</a>

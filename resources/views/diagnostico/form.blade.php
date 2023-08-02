@@ -13,8 +13,8 @@
     <script src="{{ asset('js/form.js') }}"></script>
     <title>compuActual - diágnostico</title>
 </head>
-<div class="collapse show border" id="company1">
-<div class="display-4 text-success">Diágnostico</div>
+<div class="collapse show" id="company1">
+<div class="display-4 text-success align text-center">Diágnostico</div>
 <form action="" class="row g-3">
 <div class="col-md-6">
         <div class="" style="width: 38rem;">
