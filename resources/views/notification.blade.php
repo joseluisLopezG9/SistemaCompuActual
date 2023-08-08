@@ -55,8 +55,52 @@
             });
         });
     }
-  
+
 </script>
+
+<script>
+
+function sendNotificationToDevice(deviceType, recepcioneId) {
+        fetch(`/api/update-notification/${recepcioneId}?device_type=${deviceType}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Notificación enviada',
+                    text: `La notificación se ha enviado satisfactoriamente al dispositivo ${deviceType}.`,
+                });
+                // Actualizar el estado en la tabla HTML
+                const estadoCell = document.getElementById('estado_' + recepcioneId);
+                estadoCell.textContent = 'ENVIADA';
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al enviar la notificación',
+                    text: 'Ha ocurrido un error al enviar la notificación.',
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error al enviar la notificación:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al enviar la notificación',
+                text: 'Ha ocurrido un error al enviar la notificación.',
+            });
+        });
+    }
+
+
+</script>
+
 
 </head>
 

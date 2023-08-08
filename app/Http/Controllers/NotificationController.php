@@ -7,6 +7,7 @@ use App\Models\Recepcione;
 use App\Notifications\FcmNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 
 class NotificationController extends Controller
@@ -42,11 +43,24 @@ class NotificationController extends Controller
         }
    }
    
-    /*public function receiveData(Request $request){
+    public function updateStateNotification(Request $request){
 
+        $response = $request->input('response');
+        $modelo = $request->input('modelo');
+        $numSerie = $request->input('numSerie');
+        
+        // Realizar solicitud HTTP para actualizar el estado en Laravel
+        $baseUrl = 'http://localhost:8000/api';
+        $endpoint = 'update_state_notification';
+        $response = Http::post("$baseUrl/$endpoint", [
+            'response' => $response,
+            'modelo' => $modelo,
+            'numSerie' => $numSerie,
+        ]);
+        
+        return response()->json(['message' => 'Estado de notificación actualizado']);
+    }
 
-
-    }*/
 
     public function sendNotification(Request $request, $id)
     {
@@ -64,13 +78,13 @@ class NotificationController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'La notificación al dispositivo $deviceType se ha enviado satisfactoriamente' , ucfirst($deviceType),
+                'message' => "La notificación al dispositivo $deviceType se ha enviado satisfactoriamente" , ucfirst($deviceType),
             ], 200);
         }
 
         return response()->json([
             'success' => false,
-            'message' => 'La notificación ya ha sido enviada al cliente, espere a que responda'
+            'message' => "La notificación ya ha sido enviada al cliente, espere a que responda"
         ], 200);
 
     }
