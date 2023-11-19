@@ -60,5 +60,11 @@ class Recepcione extends Model
 	{
 		return $this->fcm_token;
 	}
+ 
+	public function diagnostico()
+	{
+		return $this->hasOne(Diagnostico::class);
+	}
+
 
 }

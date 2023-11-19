@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DiagnosticoController;
 use App\Http\Controllers\RecepcioneController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,14 +27,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/welcome', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
-
 //Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
 
 //Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'create']);
 
-Route::get('/register/form', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+//Route::post('/register/form', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
 
-Route::get('/register', [App\Http\Controllers\WelcomeController::class, 'showUsers'])->name('register');
+//Route::get('/register', [App\Http\Controllers\WelcomeController::class, 'showUsers'])->name('register');
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+
+Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/register/{user}/edit', [App\Http\Controllers\WelcomeController::class, 'editUser'])->name('users.edit');
 

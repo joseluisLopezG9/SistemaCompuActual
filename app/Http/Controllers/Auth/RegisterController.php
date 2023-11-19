@@ -40,10 +40,10 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('showRegistrationForm');
-    }
+    //public function __construct()
+    //{
+        //$this->middleware('guest')->except('showRegistrationForm');
+    //}
 
     /**
      * Get a validator for an incoming registration request.
@@ -78,11 +78,11 @@ class RegisterController extends Controller
          ]);
 
      
-         if ($validator->fails()) {
-             return redirect()->back()
-                 ->withErrors($validator)
-                 ->withInput();
-         }
+        // if ($validator->fails()) {
+             //return redirect()->back()
+                 //->withErrors($validator)
+                 //->withInput();
+         //}
      
          $user = User::create([
              'name' => $request->input('name'),
@@ -91,8 +91,8 @@ class RegisterController extends Controller
              'role' => $request->input('role'),
          ]);
 
-         $role = Role::where('name', $request->input('role'))->first(); 
-         $user->assignRole($role);
+         //$role = Role::where('name', $request->input('role'))->first(); 
+        $user->assignRole($request->input('role'));
      
          auth()->login($user);
      

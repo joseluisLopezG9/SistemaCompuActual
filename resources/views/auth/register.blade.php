@@ -116,33 +116,24 @@
             @endcan
           </tr>
         </thead>
-        <tbody>
-            @foreach ($users as $user)
-          <tr>
-                <td>{{ $user->id }}</td> 
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->role }}</td>
-            @can('admin.recepcione.destroy')
-            <td><a class="btn btn-outline-success" href="{{ route('users.edit', $user->id) }}"><i class="bi bi-pencil-square"></i></button></td>
-            @endcan
-            @can('admin.recepcione.destroy')
-            <form action="{{ route('users.destroy', $user->id) }}" method="POST"></form>
-             @csrf
-             @method('DELETE')
-            <td><button type="submit" class="btn btn-outline-danger" onclick="return confirm('Estás seguro que deseas eliminar este usuario?')"><i class="bi bi-trash3-fill"></button></i></td>
-            </form>
-            @endcan
+       <!-- <tbody>
+           
+        <tr>
+               
+          
           </tr>
-          @endforeach
-        </tbody>
+         
+        </tbody> -->
       </table>
-</div>
+</div> 
+
+
 
  
 <div class="row g-2 justify-content-center m-4">
     <div class="col-md-10">
             <div class="card border-0 m-4">
-            @can('admin.recepcione.destroy')  
+            
                 <div class="card align-items-center text-primary border-0" style="font-size: 2rem">{{ __('Registrar un nuevo usuario') }}</div>
                 <br>
                 <div class="card-body">
@@ -224,10 +215,10 @@
                         </div>
             
                             <div class="col-md-6 offset-md-4" style="display: flex; justify-content: center;">
-                            @can('admin.recepcione.destroy')  
+                            
                                 <button type="submit" class="btn btn-success mb-2"><i class="bi bi-person-plus-fill"></i>
                                     {{ __('Registrar usuario') }}
-                            @endcan
+                            
                                 </button>
                             </div>
                     </form>
@@ -236,7 +227,7 @@
                     </div>
                 </div>
             </div>
-            @endcan
+            
         </div>
     </div>
 </div>

@@ -49,6 +49,11 @@ class Diagnostico extends Model
      */
     protected $fillable = ['fechaDiagnostico','observaciones','marca','modelo','numSerie','motherboard','ram','unidadAlmacenamiento','cpu','gpu'];
 
+	public function recepcion()
+	{
+		return $this->belongsTo(Recepcione::class);
+	}
+
 
 
 }
