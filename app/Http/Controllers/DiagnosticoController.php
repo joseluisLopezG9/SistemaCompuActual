@@ -32,7 +32,10 @@ class DiagnosticoController extends Controller
     public function create()
     {
         $diagnostico = new Diagnostico();
-        return view('diagnostico.create', compact('diagnostico'));
+
+        $recepcionData = session('recepcion_data');
+
+        return view('diagnostico.create', compact('diagnostico', 'recepcionData'));
     }
 
     /**

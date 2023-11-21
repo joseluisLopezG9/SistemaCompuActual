@@ -6,17 +6,17 @@
             <div class="card-body mb-2"> 
                 <div class="form-group mb-2">
                     <label for="">Marca</label>
-                    {{ Form::text('marca', $recepcione->marca, ['class' => 'form-control' . ($errors->has('marca') ? ' is-invalid' : '')]) }}
+                    {{ Form::text('marca', $recepcionData['marca'] ?? $oldData['marca'] ?? '', ['class' => 'form-control' . ($errors->has('marca') ? ' is-invalid' : '')]) }}
                     {!! $errors->first('marca', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Modelo del equipo</label>
-                    {{ Form::text('modelo', $recepcione->modelo, ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : '')]) }}
+                    {{ Form::text('modelo', $recepcionData['modelo'] ?? $oldData['modelo'] ?? '', ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : '')]) }}
                     {!! $errors->first('modelo', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Número de serie</label>
-                    {{ Form::text('numSerie', $recepcione->numSerie, ['class' => 'form-control' . ($errors->has('numSerie') ? ' is-invalid' : '')]) }}
+                    {{ Form::text('numSerie', $recepcionData['numSerie'] ?? $oldData['numSerie'] ?? '', ['class' => 'form-control' . ($errors->has('numSerie') ? ' is-invalid' : '')]) }}
                     {!! $errors->first('numSerie', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
                 <div class="form-group mb-2">

@@ -32,9 +32,13 @@ class RecepcioneController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+    
         $recepcione = new Recepcione();
-        return view('recepcione.create', compact('recepcione'));
+
+        $recepcionData = session('recepcion_data');
+
+        return view('recepcione.create', compact('recepcione', 'recepcionData'));
 
     }
 
@@ -53,6 +57,13 @@ class RecepcioneController extends Controller
         $recepcione->estado_notificacion = 'PENDIENTE';
 
         $recepcione->save();
+
+        $request->session()->put('recepcion_data' , [
+            'marca' => $request->marca,
+            'modelo' => $request->modelo,
+            'numSerie' => $request->numSerie,
+        ]);
+    
 
         return redirect()->route('recepciones.index')
             ->with('success', 'La recepción se ha creado exitosamente!.');
@@ -81,7 +92,9 @@ class RecepcioneController extends Controller
     {
         $recepcione = Recepcione::find($id);
 
-        return view('recepcione.edit', compact('recepcione'));
+        $oldData = $recepcione->toArray();
+
+        return view('recepcione.edit', compact('recepcione', 'oldData'));
     }
 
     /**

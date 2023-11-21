@@ -32,17 +32,17 @@
         </div>
         <div class="form-group mb-2">
             <label for="">Marca del equipo</label>
-            {{ Form::text('marca', $diagnostico->marca, ['class' => 'form-control' . ($errors->has('marca') ? ' is-invalid' : '')]) }}
+            {{ Form::text('marca',  $recepcionData['marca'] ?? $oldData['marca'] ?? '', ['class' => 'form-control' . ($errors->has('marca') ? ' is-invalid' : '')]) }}
             {!! $errors->first('marca', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group mb-2">
             <label for="">Modelo del equipo</label>
-            {{ Form::text('modelo', $diagnostico->modelo, ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : '')]) }}
+            {{ Form::text('modelo',  $recepcionData['modelo'] ?? $oldData['modelo'] ?? '', ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : '')]) }}
             {!! $errors->first('modelo', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group mb-2">
             <label for="">Número de serie</label>
-            {{ Form::text('numSerie', $diagnostico->numSerie, ['class' => 'form-control' . ($errors->has('numSerie') ? ' is-invalid' : '')]) }}
+            {{ Form::text('numSerie',  $recepcionData['numSerie'] ?? $oldData['numSerie'] ?? '', ['class' => 'form-control' . ($errors->has('numSerie') ? ' is-invalid' : '')]) }}
             {!! $errors->first('numSerie', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group mb-2">
