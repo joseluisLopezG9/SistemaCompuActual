@@ -26,6 +26,11 @@
     <!--responsive css-->
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
 
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef"/>
+    <link rel="apple-touch-icon" href="{{ asset('Nova.PNG') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+
 </head>
 
 <body>
@@ -268,6 +273,17 @@
     <script src="js/contact.js"></script>
     <!--main js-->
     <script src="js/custom.js"></script>
+
+    <!-- SERVICE WORKER -->
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker.register("/sw.js").then(function (reg) {
+                console.log("Service worker has been registered for scope: " + reg.scope);
+            });
+        }
+    </script>
+
 </body>
 
 </html>
