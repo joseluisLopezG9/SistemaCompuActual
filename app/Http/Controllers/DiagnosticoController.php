@@ -77,7 +77,7 @@ class DiagnosticoController extends Controller
     {
         $diagnostico = Diagnostico::find($id);
 
-        return view('diagnostico.edit', compact('diagnostico'));
+        return view('diagnostico.show', compact('diagnostico'));
     }
 
     /**

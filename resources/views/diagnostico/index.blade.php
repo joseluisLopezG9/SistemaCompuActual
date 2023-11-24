@@ -55,7 +55,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <h5 style="text-align: center;" id="card_title">
-                                {{ __('Diagnósticos compuActual | Agosto 2023') }}
+                                {{ __('Diagnósticos compuActual | Noviembre 2023') }}
                             </h5>
 
                             @can('admin.diagnostico.create')

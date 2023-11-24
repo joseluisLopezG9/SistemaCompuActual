@@ -30,10 +30,13 @@
     <meta name="theme-color" content="#6777ef"/>
     <link rel="apple-touch-icon" href="{{ asset('Nova.PNG') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
+    
 
 </head>
 
 <body>
+    
+    
     <!--Start Preloader-->
     <div class="preloader">
         <div class="d-table">
@@ -47,6 +50,8 @@
     </div>
     <!--End Preloader-->
     <!--start header-->
+    
+    
     <header id="header">
         <div class="container">
             <nav class="navbar navbar-expand-lg">
@@ -63,16 +68,23 @@
                         @if (Route::has('login'))
                             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                                 @auth
-                                   
+                                    <!-- Usuario autenticado, puedes agregar contenido adicional si es necesario -->
                                 @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline mb-2">Iniciar sesión</a>
-                                    
+                                    <a href="{{ route('login') }}" class="btn btn-primary btn-lg mb-2">
+                                        Iniciar sesión
+                                    </a>
+                                    <!-- Descomenta el siguiente bloque si también tienes registro habilitado -->
+                                    <!--
                                     @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Registrarse</a>
+                                        <a href="{{ route('register') }}" class="btn btn-outline-secondary btn-lg">
+                                            Registrarse
+                                        </a>
                                     @endif
+                                    -->
                                 @endauth
                             </div>
                         @endif
+                    </div>
             </nav>
         </div>
     </header>
@@ -82,15 +94,7 @@
         <div class="container">
             <div class="row">
                 <!--start caption content-->
-                <div class="col-md-6">
-                    <div class="caption d-table">
-                        <div class="d-table-cell align-center">
-                            <h1>¡Bienvenid@ a CompuActual!</h1>
-                            <p></p>
-                            <a href="#">Conócenos</a>
-                        </div>
-                    </div>
-                </div>
+               
                 <!--end caption content-->
                 <!--start caption image-->
                 <div class="col-md-6">
@@ -285,5 +289,6 @@
     </script>
 
 </body>
+
 
 </html>
