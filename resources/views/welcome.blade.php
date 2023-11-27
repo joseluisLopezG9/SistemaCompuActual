@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <!--responsive css-->
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    
 
     <!-- PWA  -->
     <meta name="theme-color" content="#6777ef"/>
@@ -94,7 +95,15 @@
         <div class="container">
             <div class="row">
                 <!--start caption content-->
-               
+                <div class="col-md-6">
+                    <div class="caption d-table">
+                        <div class="d-table-cell align-center">
+                            <h1>¡Bienvenid@ a CompuActual!</h1>
+                            <p></p>
+                            <a href="#">Conócenos</a>
+                        </div>
+                    </div>
+                </div>
                 <!--end caption content-->
                 <!--start caption image-->
                 <div class="col-md-6">
@@ -278,6 +287,14 @@
     <!--main js-->
     <script src="js/custom.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <!-- SERVICE WORKER -->
     <script src="{{ asset('/sw.js') }}"></script>
     <script>
@@ -286,6 +303,40 @@
                 console.log("Service worker has been registered for scope: " + reg.scope);
             });
         }
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('f749b9737c075b8cfc4d', {
+      cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('compuactual-channel');
+    channel.bind('user-home', function(data) {
+        toastr.success(JSON.stringify(data.name) + 'Has joined our website')
+      alert();
+    });
+
+    Command: toastr["info"]("a CompuActual!", "Bievenido de vuelta")
+
+    toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-bottom-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+    }
+
     </script>
 
 </body>

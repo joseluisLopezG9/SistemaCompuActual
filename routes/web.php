@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserLogin;
 use App\Http\Controllers\DiagnosticoController;
 use App\Http\Controllers\RecepcioneController;
 use App\Http\Controllers\Auth\RegisterController;

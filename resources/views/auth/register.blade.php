@@ -100,7 +100,7 @@
 </nav>
 
 
-<div class="row g-2 justify-content-center m-4">
+<!-- <div class="row g-2 justify-content-center m-4">
     <table class="table m-4">
         <div class="card align-items-center text-primary border-0" style="font-size: 2rem">{{ __('Usuarios registrados') }}</div>
         <thead>
@@ -125,7 +125,7 @@
          
         </tbody> -->
       </table>
-</div> 
+</div> -->
 
 
 
