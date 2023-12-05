@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    notify('', 'Bienvenido de vuelta a CompuActual!', '');
+    //notify('', 'Bienvenido de vuelta a CompuActual!', '');
     return view('welcome');
 });
 
